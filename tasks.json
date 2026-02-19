@@ -3,12 +3,6 @@
         "id": 1,
         "title": "string",
         "description": "string",
-        "completed": false
-    },
-    {
-        "id": 2,
-        "title": "string",
-        "description": "string",
-        "completed": false
+        "completed": true
     }
 ]
