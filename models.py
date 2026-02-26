@@ -7,3 +7,5 @@ class Task(BaseModel):
     title: str                    # Título de la tarea [cite: 13]
     description: Optional[str] = None # Descripción opcional [cite: 14]
     completed: bool = False       # Estado: pendiente o completada [cite: 15]
+
+    
