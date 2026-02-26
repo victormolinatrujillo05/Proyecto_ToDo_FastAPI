@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from models import Task
 from storage import load_tasks, save_tasks
 
-# Configuración principal de la API
+# Configuracion principal de la API
 app = FastAPI(
     title="Panel de Control de Tareas",
     description="API profesional para gestionar tareas diarias con persistencia en JSON.",
