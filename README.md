@@ -1,4 +1,4 @@
-# 📝 Gestión de Tareas - Proyecto FastAPI
+#  Gestión de Tareas - Proyecto FastAPI
 
 ¡Hola! Este es mi proyecto para la práctica de desarrollo de APIs. He construido una herramienta para gestionar tareas diarias (To-Do List) donde los datos se guardan de forma local en un archivo JSON.
 
