@@ -1,6 +1,6 @@
 #  Gestión de Tareas - Proyecto FastAPI
 
-¡Hola! Este es mi proyecto para la práctica de desarrollo de APIs. He construido una herramienta para gestionar tareas diarias (To-Do List) donde los datos se guardan de forma local en un archivo JSON.
+Este proyecto consiste en el desarrollo de una API para el control de tareas con operaciones CRUD completas. Los datos se almacenan de forma persistente en un archivo tasks.json.
 
 ##  Funcionalidades
 He implementado los siguientes endpoints para manejar las tareas:
@@ -18,7 +18,7 @@ Si quieres probarlo, sigue estos pasos:
 3. **Librerías**: Instala todo con `pip install fastapi uvicorn`.
 4. **Ejecución**: Lanza el servidor con `uvicorn main:app --reload`.
 
-##  Cómo probar la API (Swagger)
+##  Cómo usar la API (Swagger)
 Para interactuar con la API de forma visual, abre tu navegador en: `http://localhost:8000/docs`. Verás un panel con botones de colores; aquí te explico cómo usar cada uno:
 
 ### 1. Crear una nueva tarea (POST)
