@@ -1,6 +1,6 @@
 #  Gestión de Tareas - Proyecto FastAPI
 
-Este proyecto consiste en el desarrollo de una API para el control de tareas con operaciones CRUD completas. Los datos se almacenan de forma persistente en un archivo tasks.json.
+Este proyecto consiste en el desarrollo de una APIREST para el control de tareas con operaciones CRUD completas. Los datos se almacenan de forma permanente en un archivo tasks.json.
 
 ##  Funcionalidades
 He implementado los siguientes endpoints para manejar las tareas:
