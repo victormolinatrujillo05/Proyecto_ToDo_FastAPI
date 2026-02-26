@@ -22,3 +22,4 @@ Ejecutar el servidor con:
 ## [cite_start]Pruebas [cite: 50]
 Puedes probar los endpoints en la documentación automática de Swagger en:
 [cite_start]`http://localhost:8000/docs` [cite: 29]
+

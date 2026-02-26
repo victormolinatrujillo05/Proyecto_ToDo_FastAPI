@@ -1,58 +1,66 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from models import Task
 from storage import load_tasks, save_tasks
 
-app = FastAPI(title="Mi API de Tareas")
+# Configuración principal de la API
+app = FastAPI(
+    title="Panel de Control de Tareas",
+    description="API profesional para gestionar tareas diarias con persistencia en JSON.",
+    version="1.0.0"
+)
 
-# Endpoint para obtener todas las tareas [cite: 21]
-@app.get("/tasks")
+# Etiqueta común para agrupar los endpoints
+TAG_NAME = "Gestión de Tareas"
+
+# --- ENDPOINTS ---
+
+@app.get("/tasks", tags=[TAG_NAME])
 def get_tasks():
+    """Obtiene la lista completa de tareas guardadas."""
     return load_tasks()
 
-# Endpoint para crear una nueva tarea [cite: 19]
-@app.post("/tasks")
+@app.post("/tasks", tags=[TAG_NAME])
 def create_task(task: Task):
+    """Crea una nueva tarea y le asigna un ID automáticamente."""
     tasks = load_tasks()
     
-    # Generar un ID automático [cite: 12]
+    # Generar un ID automático
     new_id = 1 if not tasks else tasks[-1]["id"] + 1
     
-    # Preparamos los datos de la tarea [cite: 10]
+    # Preparamos los datos de la tarea
     task_dict = task.dict()
     task_dict["id"] = new_id
     
     tasks.append(task_dict)
     save_tasks(tasks)
     
-    return {"message": "Tarea creada!", "task": task_dict}
-from fastapi import HTTPException # Añade esto arriba, junto a los otros imports
+    return {"message": "¡Tarea creada con éxito!", "task": task_dict}
 
-# 1. Obtener una tarea por su ID [cite: 22]
-@app.get("/tasks/{task_id}")
+@app.get("/tasks/{task_id}", tags=[TAG_NAME])
 def get_task(task_id: int):
+    """Busca una tarea específica por su número de ID."""
     tasks = load_tasks()
     for t in tasks:
         if t["id"] == task_id:
             return t
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
 
-# 2. Actualizar una tarea (marcar como completada) [cite: 24]
-@app.put("/tasks/{task_id}")
+@app.put("/tasks/{task_id}", tags=[TAG_NAME])
 def update_task(task_id: int, updated_task: Task):
+    """Actualiza los datos de una tarea existente manteniendo su ID."""
     tasks = load_tasks()
     for i, t in enumerate(tasks):
         if t["id"] == task_id:
-            # Mantener el ID original pero actualizar el resto [cite: 25]
             task_dict = updated_task.dict()
             task_dict["id"] = task_id
             tasks[i] = task_dict
             save_tasks(tasks)
-            return {"message": "Tarea actualizada", "task": task_dict}
-    raise HTTPException(status_code=404, detail="No se pudo actualizar")
+            return {"message": "Tarea actualizada correctamente", "task": task_dict}
+    raise HTTPException(status_code=404, detail="No se pudo actualizar: ID inexistente")
 
-# 3. Eliminar una tarea 
-@app.delete("/tasks/{task_id}")
+@app.delete("/tasks/{task_id}", tags=[TAG_NAME])
 def delete_task(task_id: int):
+    """Elimina una tarea permanentemente de la lista."""
     tasks = load_tasks()
     new_tasks = [t for t in tasks if t["id"] != task_id]
     
